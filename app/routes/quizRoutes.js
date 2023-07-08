@@ -5,10 +5,8 @@ const quizController = require("../controllers/quizController");
 const authController = require("../controllers/authController");
 const {
   patientSignupValidator,
-  validate,
   patientLoginValidator,
 } = require("../validations/patientValidation");
-const { requireAuth } = require("../middlewares/authMiddleware");
 // const { upload } = require("../services/upload");
 
 //GET Requests
@@ -41,18 +39,5 @@ router.post(
   quizController.calculateUserResult
 );
 
-
-//PUT Requests
-router.put(
-  "/patient/updatePassword/:id",
-  requireAuth,
-  patientController.update_password
-);
-router.put(
-  "/patient/editProfile/:id",
-  requireAuth,
-  // upload.single("profilePicture"),
-  patientController.edit_profile
-);
 
 module.exports = router;

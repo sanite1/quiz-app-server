@@ -4,15 +4,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const http = require("http");
-const path = require("path");
 const { connectToDB } = require("./config/database");
 const PORT = process.env.PORT || process.env.SERVER_PORT || 4000;
-const patientRoutes = require("./app/routes/patientRoutes");
-const socket = require("socket.io-client")("http://localhost:3000");
-const { Server } = require("socket.io");
-const authRoutes = require("./app/routes/authRoutes");
 const Quiz = require("./app/routes/quizRoutes");
-const { requireAuth, checkUser } = require("./app/middlewares/authMiddleware");
 
 const app = express();
 const apiVersion = "/api/v1";
@@ -56,24 +50,6 @@ app.use((error, req, res, next) => {
 //Server and Database setup
 const server = http.createServer(app);
 // Only start server after connection to database has been established
-const io = new Server(server, {
-  cors: {
-    origin: "https://nexus-frontend-rho.vercel.app",
-  },
-});
-let users = [];
-let usersInRoom = new Map();
-const addUser = (userId, socketId) => {
-  !users.some((user) => user.userId === userId) &&
-    users.push({ userId, socketId });
-};
-const removeUser = (socketId) => {
-  users = users.filter((user) => user.socketId !== socketId);
-};
-
-const getUser = (userId) => {
-  return users.find((user) => user.userId === userId);
-};
 
 
 connectToDB()
