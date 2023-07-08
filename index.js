@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 app.use(cookieParser()); // To parse the incoming cookies
 const corsOptions = {
   credentials: true,
-  origin: ["https://master--warm-puppy-8273f6.netlify.app", "http://localhost:3000"],
+  origin: ["https://premiumjobs-sbs.netlify.app", "http://localhost:3000"],
   // origin: "http://localhost:3000",
 };
 app.use(cors(corsOptions)); // npm i cors
