@@ -11,7 +11,7 @@ async function createQuestion(req, res) {
     const { query, language, state, country, date, resultType, resultText, resultLink, options, correctAnswer } = req.body;
 
     // Create a new question
-    const newQuestion = new Question({ query, language, state, country, date, resultType, resultText, resultLink, options: ["Highly Satisfying", "Satisfying", "Slightly Satisfying", "Not Satisfying"] });
+    const newQuestion = new Question({ query, language, state, country, date, resultType, resultText, resultLink, options: ["Highly Satisfying", "Satisfying", "Somewhat Satisfying", "Not Satisfying"] });
     await newQuestion.save();
 
     // Create a new correct answer entry
