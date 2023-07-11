@@ -31,12 +31,12 @@ app.use((req, res, next) => {
 app.use(cookieParser()); // To parse the incoming cookies
 const corsOptions = {
   credentials: true,
-  origin: ["https://premiumjobs-sbs.netlify.app", "http://localhost:3000"],
+  origin: ["https://premiumjobs-sbs.netlify.app", "https://search-relevance.vercel.app", "http://localhost:3000"],
   // origin: "http://localhost:3000",
 };
 app.use(cors(corsOptions)); // npm i cors
 
-app.use(apiVersion, Quiz); //Call routes here
+app.use(apiVersion, Quiz); //Call routes here 
 //Invalid Route   //NB: using app.use instead of app.get/post handles all wrong requests and throws the message (For our API in dev/prod)
 app.use("*", (req, res) => {
   res.status(404).send({ error: "Route does not exist" });
